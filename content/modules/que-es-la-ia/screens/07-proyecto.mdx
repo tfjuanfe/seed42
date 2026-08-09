@@ -1,11 +1,16 @@
 import { ProjectClassify } from "@/components/interactives/project-classify";
 import { projectItems, iaCategories } from "../data";
 
-Diez casos, sin pistas y sin verificación. Clasifícalos y después defiende tu criterio por escrito: eso es lo que entrega un analista de verdad.
+Tu primer proyecto: una auditoría. Diez sistemas, y tú decides cuáles
+aprendieron de datos y cuáles solo siguen reglas — sin pistas y sin
+verificación, como en la vida real.
+
+Al final defiendes tu criterio por escrito. Eso —clasificar y argumentar—
+es exactamente lo que hace un auditor de IA profesional.
 
 <ProjectClassify
   moduleSlug="que-es-la-ia"
   items={projectItems}
   categories={iaCategories}
-  reasoningPrompt="¿Qué criterio usaste para separar IA de no IA? Escríbelo como si se lo explicaras a alguien de tu curso que faltó hoy."
+  reasoningPrompt="¿Qué criterio usaste para separar IA de no IA? Escríbelo como se lo explicarías a alguien de tu curso que faltó hoy."
 />

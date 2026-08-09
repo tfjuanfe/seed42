@@ -15,6 +15,16 @@ interface Props {
   children: ReactNode[];
 }
 
+// The screen kind, spoken in the student's language.
+const KIND_LABEL: Record<ScreenMeta["kind"], string> = {
+  hook: "empieza aquí",
+  reveal: "el concepto",
+  build: "construye",
+  break: "rómpelo",
+  project: "proyecto",
+  reflection: "reflexión",
+};
+
 // The module player: one screen at a time, forward/back, progress that
 // persists locally, analytics events, and a completion moment at the end.
 export function Player({ meta, screens, children }: Props) {
@@ -101,10 +111,11 @@ export function Player({ meta, screens, children }: Props) {
           transition={{ duration: 0.18, ease: "easeOut" }}
           className="flex-1 flex flex-col gap-5"
         >
-          <h1 className={`text-h1 ${isBreak ? "text-fail" : ""}`}>
-            {screen.title}
-          </h1>
-          <div className="flex flex-col gap-4">{children[index]}</div>
+          <p className={`eyebrow ${isBreak ? "!text-[var(--fail)]" : ""}`}>
+            {KIND_LABEL[screen.kind]}
+          </p>
+          <h1 className="text-h1 -mt-2">{screen.title}</h1>
+          <div className="notebook flex flex-col gap-4">{children[index]}</div>
         </motion.section>
       </AnimatePresence>
 
