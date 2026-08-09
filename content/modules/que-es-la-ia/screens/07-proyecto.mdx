@@ -1,0 +1,11 @@
+import { ProjectClassify } from "@/components/interactives/project-classify";
+import { projectItems, iaCategories } from "../data";
+
+Diez casos, sin pistas y sin verificación. Clasifícalos y después defiende tu criterio por escrito: eso es lo que entrega un analista de verdad.
+
+<ProjectClassify
+  moduleSlug="que-es-la-ia"
+  items={projectItems}
+  categories={iaCategories}
+  reasoningPrompt="¿Qué criterio usaste para separar IA de no IA? Escríbelo como si se lo explicaras a alguien de tu curso que faltó hoy."
+/>
