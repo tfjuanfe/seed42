@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/*
+ * Seed42 design tokens.
+ * Dark is the default theme (no attribute); light is opted into via
+ * [data-theme="light"] on <html>. Values are locked by the project brief —
+ * do not change without approval.
+ */
+:root {
+  --bg: #0d0d12;
+  --panel: #16161d;
+  --sub: #1d1d26;
+  --text: #ededf2;
+  --muted: #8b8b99;
+  --border: rgba(255, 255, 255, 0.07);
+
+  --accent: #7f77dd;
+  --accent-hover: #9a93ea;
+  --accent-deep: #534ab7;
+  --success: #5dcaa5;
+  --fail: #ed93b1;
+  --warn: #ef9f27;
+
+  /* Shape: controls 9px · cards 12px · panels 14px · outer container 16px */
+  --radius-control: 9px;
+  --radius-card: 12px;
+  --radius-panel: 14px;
+  --radius-container: 16px;
+}
+
+[data-theme="light"] {
+  --bg: #f2f2f6;
+  --panel: #ffffff;
+  --sub: #f6f6fa;
+  --text: #16161c;
+  --muted: #61616e;
+  --border: rgba(20, 20, 28, 0.08);
+
+  --accent-hover: #534ab7;
+  --success: #1d9e75;
+  --fail: #d4537e;
+  --warn: #ba7517;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-sub: var(--sub);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-deep: var(--accent-deep);
+  --color-success: var(--success);
+  --color-fail: var(--fail);
+  --color-warn: var(--warn);
+
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+  --radius-container: var(--radius-container);
+
+  --font-sans: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
+}
+
+/* Tokenized border color; width utilities still come from Tailwind. */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  /* Body minimum is 17px / weight 400 per the type scale. */
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/*
+ * Type scale (brief): only weights 400 and 500 exist in this project.
+ * Utility classes so MDX and components share one vocabulary.
+ */
+.text-display {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+@media (max-width: 640px) {
+  .text-display {
+    font-size: 30px;
+  }
+}
+.text-h1 {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.text-h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.text-secondary {
+  font-size: 15px;
+  font-weight: 400;
+}
+.text-label {
+  font-size: 12.5px;
+  font-weight: 400;
+}
+.text-metric {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+}
+
+/* Borders are 0.5px everywhere — never 1px, never 2px. */
+.border-hairline {
+  border-width: 0.5px;
+}
+
+/* Focus visibility for keyboard users; accent marks the actionable. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
