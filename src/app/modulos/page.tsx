@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
+import { modules } from "@content/modules/registry";
+import { ModuleCard } from "@/components/module-card";
 
 export const metadata: Metadata = { title: "Módulos" };
 
-// Placeholder: the module index with real progress arrives in Phase 2.
 export default function ModulosPage() {
   return (
-    <section className="py-16 flex flex-col gap-4">
-      <h1 className="text-h1">Módulos</h1>
-      <p className="text-muted max-w-xl">
-        Aquí van a vivir los diez módulos interactivos. El primero se podrá
-        jugar sin cuenta.
-      </p>
+    <section className="py-10 sm:py-14 flex flex-col gap-8">
+      <header className="flex flex-col gap-2">
+        <h1 className="text-h1">Módulos</h1>
+        <p className="text-muted max-w-xl">
+          Diez módulos de ~30 minutos. Empieza por el primero: no necesitas
+          cuenta ni saber programar.
+        </p>
+      </header>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[11px]">
+        {modules.map((m) => (
+          <ModuleCard key={m.slug} meta={m} />
+        ))}
+      </div>
     </section>
   );
 }
