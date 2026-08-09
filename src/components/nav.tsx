@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LogoMark } from "@/components/logo-mark";
 
 // NOTE: the /competencia link is intentionally absent for now —
 // competition and leaderboard work is on hold per project direction.
@@ -23,8 +24,9 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="font-medium tracking-tight text-text mr-auto rounded-[var(--radius-control)] px-2 py-1"
+          className="flex items-center gap-2 font-medium tracking-tight text-text mr-auto rounded-[var(--radius-control)] px-2 py-1"
         >
+          <LogoMark className="w-[18px] h-[18px]" />
           Seed42
         </Link>
 

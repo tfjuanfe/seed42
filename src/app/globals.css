@@ -74,13 +74,24 @@
 }
 
 body {
-  background: var(--bg);
+  /* Atmospheric depth: a faint violet aurora at the top edge and a
+     cool undertone at the bottom. Barely-there on purpose. */
+  background:
+    radial-gradient(900px 420px at 78% -8%, rgba(127, 119, 221, 0.09), transparent 65%),
+    radial-gradient(700px 380px at -10% 108%, rgba(93, 202, 165, 0.05), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans);
   /* Body minimum is 17px / weight 400 per the type scale. */
   font-size: 17px;
   font-weight: 400;
   line-height: 1.55;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0d0d12;
 }
 
 /*
@@ -128,6 +139,25 @@ body {
 /* Borders are 0.5px everywhere — never 1px, never 2px. */
 .border-hairline {
   border-width: 0.5px;
+}
+
+/* Eyebrow: the mono, uppercase, letter-spaced label that opens every
+   screen and section — the notebook's margin note. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Notebook prose rhythm for module screens */
+.notebook > p {
+  max-width: 65ch;
+}
+.notebook > p + p {
+  margin-top: 0.75rem;
 }
 
 /* Focus visibility for keyboard users; accent marks the actionable. */
