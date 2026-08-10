@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { AccountGate } from "@/components/account-gate";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <Nav />
         <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6">
-          {children}
+          <AccountGate>{children}</AccountGate>
         </main>
         <Footer />
       </body>

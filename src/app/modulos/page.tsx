@@ -14,7 +14,7 @@ export default function ModulosPage() {
           cuenta ni saber programar.
         </p>
       </header>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[11px]">
+      <div className="flex flex-col border-t border-hairline">
         {modules.map((m) => (
           <ModuleCard key={m.slug} meta={m} />
         ))}

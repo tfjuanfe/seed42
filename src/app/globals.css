@@ -74,12 +74,19 @@
 }
 
 body {
-  /* Atmospheric depth: a faint violet aurora at the top edge and a
-     cool undertone at the bottom. Barely-there on purpose. */
+  /* Atmospheric depth: a faint dot grid over a violet aurora at the
+     top edge and a cool undertone at the bottom. Barely-there on
+     purpose. */
   background:
+    radial-gradient(color-mix(in srgb, var(--text) 5%, transparent) 0.5px, transparent 0.5px),
     radial-gradient(900px 420px at 78% -8%, rgba(127, 119, 221, 0.09), transparent 65%),
     radial-gradient(700px 380px at -10% 108%, rgba(93, 202, 165, 0.05), transparent 60%),
     var(--bg);
+  background-size:
+    26px 26px,
+    auto,
+    auto,
+    auto;
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans);
