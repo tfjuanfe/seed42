@@ -2,76 +2,24 @@
 
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  BOGOTA,
+  QUIBDO,
+  CHART,
+  MONTH_LETTER,
+  MONTH_MID,
+  curvePath,
+  dailyProb,
+  dayOfYear,
+  todayISO,
+  xOf,
+  yOf,
+} from "@/lib/rain-model";
 
 // A real (small) model: probability of rain per calendar day, learned
 // from ~30 years of monthly climatology (IDEAM averages). It is not a
 // forecast — that's the whole pedagogical point: it only knows the
 // patterns present in its training data.
-
-// Fraction of rainy days per month, Bogotá. Bimodal: Apr–May and Oct–Nov.
-const BOGOTA = [0.30, 0.37, 0.47, 0.60, 0.63, 0.50, 0.40, 0.40, 0.50, 0.63, 0.57, 0.37];
-// Quibdó (Chocó), one of the rainiest places on Earth. Rain almost daily.
-const QUIBDO = [0.84, 0.84, 0.87, 0.90, 0.90, 0.90, 0.90, 0.90, 0.88, 0.88, 0.88, 0.85];
-
-const MONTH_MID = [15, 45, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349];
-const MONTH_LETTER = ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-
-// Cosine interpolation between month midpoints → smooth daily curve.
-function dailyProb(series: number[], dayOfYear: number): number {
-  const d = ((dayOfYear - 1) % 365) + 1;
-  let i = MONTH_MID.findIndex((m) => m >= d);
-  let a: number, b: number, t: number;
-  if (i === 0) {
-    a = series[11];
-    b = series[0];
-    t = (d + 365 - MONTH_MID[11]) / (MONTH_MID[0] + 365 - MONTH_MID[11]);
-  } else if (i === -1) {
-    a = series[11];
-    b = series[0];
-    t = (d - MONTH_MID[11]) / (MONTH_MID[0] + 365 - MONTH_MID[11]);
-  } else {
-    a = series[i - 1];
-    b = series[i];
-    t = (d - MONTH_MID[i - 1]) / (MONTH_MID[i] - MONTH_MID[i - 1]);
-  }
-  const s = (1 - Math.cos(Math.PI * t)) / 2;
-  return a + (b - a) * s;
-}
-
-function dayOfYear(iso: string): number {
-  const date = new Date(iso + "T12:00:00");
-  const start = new Date(date.getFullYear(), 0, 0);
-  return Math.floor((date.getTime() - start.getTime()) / 86_400_000);
-}
-
-function todayISO(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
-// SVG geometry
-const W = 340;
-const H = 110;
-const PAD_X = 8;
-const PAD_TOP = 8;
-const PAD_BOT = 20;
-
-function xOf(d: number) {
-  return PAD_X + ((d - 1) / 364) * (W - 2 * PAD_X);
-}
-function yOf(p: number) {
-  return PAD_TOP + (1 - p) * (H - PAD_TOP - PAD_BOT);
-}
-
-function curvePath(series: number[], close: boolean): string {
-  const pts: string[] = [];
-  for (let d = 1; d <= 365; d += 4) {
-    pts.push(`${xOf(d).toFixed(1)},${yOf(dailyProb(series, d)).toFixed(1)}`);
-  }
-  pts.push(`${xOf(365).toFixed(1)},${yOf(dailyProb(series, 365)).toFixed(1)}`);
-  const line = "M" + pts.join(" L");
-  if (!close) return line;
-  return `${line} L${xOf(365).toFixed(1)},${yOf(0)} L${xOf(1).toFixed(1)},${yOf(0)} Z`;
-}
 
 function verdict(p: number): string {
   if (p >= 0.55) return "Lleva paraguas";
@@ -130,7 +78,7 @@ export function RainPredictor({ mode = "bogota" }: Props) {
       </div>
 
       <svg
-        viewBox={`0 0 ${W} ${H}`}
+        viewBox={`0 0 ${CHART.W} ${CHART.H}`}
         className="w-full h-auto select-none"
         role="img"
         aria-label="Curva de probabilidad de lluvia a lo largo del año"
@@ -157,8 +105,8 @@ export function RainPredictor({ mode = "bogota" }: Props) {
           animate={{ x1: marker.x, x2: marker.x }}
           initial={false}
           transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
-          y1={PAD_TOP}
-          y2={H - PAD_BOT}
+          y1={CHART.PAD_TOP}
+          y2={CHART.H - CHART.PAD_BOT}
           stroke="var(--muted)"
           strokeWidth="0.5"
           strokeDasharray="2 3"
@@ -174,7 +122,7 @@ export function RainPredictor({ mode = "bogota" }: Props) {
           <text
             key={i}
             x={xOf(m)}
-            y={H - 6}
+            y={CHART.H - 6}
             textAnchor="middle"
             className="font-mono"
             fontSize="8.5"
