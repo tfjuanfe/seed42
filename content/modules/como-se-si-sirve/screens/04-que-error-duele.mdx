@@ -1,0 +1,37 @@
+import { LabelingTask } from "@/components/interactives/labeling-task";
+
+Entrena el ojo: en cada situación, ¿cuál error es más grave? No hay
+trampa — hay contexto.
+
+<LabelingTask
+  items={[
+    {
+      id: "incendio",
+      text: "Alarma de incendios del colegio",
+      answer: "fn",
+      explain: "Una falsa alarma es un simulacro molesto; un incendio no detectado es una tragedia",
+    },
+    {
+      id: "spam",
+      text: "Filtro de spam de tu correo",
+      answer: "fp",
+      explain: "El spam que pasa se borra con un dedo; el correo importante bloqueado (una beca, un trabajo) puede cambiarte el año",
+    },
+    {
+      id: "fraude",
+      text: "Detector de fraude de Nequi",
+      answer: "fp",
+      explain: "Debatible — y eso es lo interesante: el fraude no detectado cuesta plata, pero miles de bloqueos injustos hacen que la gente abandone el banco",
+    },
+    {
+      id: "dengue",
+      text: "Tamizaje de dengue en zona de brote",
+      answer: "fn",
+      explain: "El examen de confirmación es barato; el enfermo que se va a casa sin diagnóstico puede no volver",
+    },
+  ]}
+  categories={[
+    { id: "fn", label: "Peor que se escape" },
+    { id: "fp", label: "Peor la falsa alarma" },
+  ]}
+/>

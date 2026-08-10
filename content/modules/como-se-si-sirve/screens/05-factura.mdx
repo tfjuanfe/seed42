@@ -1,0 +1,14 @@
+import { ThresholdExplorer } from "@/components/interactives/threshold-explorer";
+
+Los hospitales y los bancos resuelven el dilema del umbral con un truco
+brutalmente honesto: **le ponen precio a cada error**.
+
+Hoy: enfermo que se escapa = $50.000 en tratamiento tardío. Falsa alarma
+= $5.000 del examen de confirmación. Encuentra el umbral que deja la
+factura más baja:
+
+<ThresholdExplorer costs={{ fn: 50000, fp: 5000 }} />
+
+¿Notaste dónde quedó tu umbral? Como escaparse cuesta 10 veces más que la
+falsa alarma, conviene alarmarse **de más**. Si los precios fueran al
+revés, tu umbral se iría al otro lado. La ética, convertida en aritmética.
