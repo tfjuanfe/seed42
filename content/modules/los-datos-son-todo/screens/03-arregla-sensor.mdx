@@ -1,0 +1,12 @@
+import { DataTable } from "@/components/interactives/data-table";
+import { miniColumns, miniRows } from "../data";
+
+Datos de calidad del aire de una estación de Bogotá. Tres celdas están
+rotas — están marcadas en rosa. Toca cada una, lee el diagnóstico y
+decide:
+
+<DataTable columns={miniColumns} rows={miniRows} />
+
+Fíjate en algo: para cada arreglo hubo que **saber algo del mundo** — que
+999 es un código de error, que febrero no tiene 31 días. Limpiar datos no
+es mecánico: es criterio.

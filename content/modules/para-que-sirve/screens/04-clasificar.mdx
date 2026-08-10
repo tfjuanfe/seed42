@@ -1,0 +1,27 @@
+import { SpamClassifier } from "@/components/interactives/spam-classifier";
+import { CodePeek } from "@/components/code-peek";
+
+**Trabajo 2: clasificar.** En Colombia llegan millones de mensajes de
+estafa al día. Este cazador decide en microsegundos — y te muestra su
+evidencia:
+
+<SpamClassifier />
+
+Intenta engañarlo: escribe una estafa con palabras amables, o un mensaje
+inocente en MAYÚSCULAS. ¿Dónde se confunde?
+
+Y esto es todo su cerebro, en Python de verdad:
+
+<CodePeek
+  title="clasificador.py — el modelo completo"
+  code={`
+pesos = {"ganaste": 2.2, "premio": 1.8, "clave": 2.0,
+         "profe": -1.5, "tarea": -1.2}   # aprendidos de miles de ejemplos
+
+def es_estafa(mensaje):
+    puntos = -1.6                # arranca escéptico
+    for palabra in mensaje.lower().split():
+        puntos += pesos.get(palabra, 0)
+    return puntos > 0            # umbral de decisión
+`}
+/>

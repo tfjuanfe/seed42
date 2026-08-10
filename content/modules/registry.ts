@@ -42,17 +42,17 @@ export const modules: ModuleMeta[] = [
     number: 2,
     slug: "para-que-sirve",
     title: "¿Para qué sirve la IA?",
-    description: "Encuentra una aplicación de IA que afecta a Colombia y desármala pieza por pieza",
+    description: "Opera los cuatro trabajos de la IA — predecir, clasificar, recomendar, generar — y desarma una app real",
     minutes: 30,
-    available: false,
+    available: true,
   },
   {
     number: 3,
     slug: "los-datos-son-todo",
     title: "Los datos son todo",
-    description: "Limpia un CSV dañado de datos colombianos y mira cómo cambia el modelo",
+    description: "Envenena tu modelo de lluvia, caza datos rotos y limpia un dataset real de calidad del aire",
     minutes: 30,
-    available: false,
+    available: true,
   },
   {
     number: 4,
@@ -115,6 +115,8 @@ export const modules: ModuleMeta[] = [
 // Explicit loader map keeps each module's content in its own chunk.
 const loaders: Record<string, () => Promise<{ default: ModuleContent }>> = {
   "que-es-la-ia": () => import("./que-es-la-ia"),
+  "para-que-sirve": () => import("./para-que-sirve"),
+  "los-datos-son-todo": () => import("./los-datos-son-todo"),
 };
 
 export function getModuleMeta(slug: string): ModuleMeta | undefined {

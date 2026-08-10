@@ -1,0 +1,28 @@
+import { ProjectCleanData } from "@/components/interactives/project-clean-data";
+import { CodePeek } from "@/components/code-peek";
+import { projectColumns, projectRows } from "../data";
+
+Tu proyecto: una semana real de datos de calidad del aire, con **seis
+problemas** escondidos. Encuéntralos todos, decide cada arreglo y sube la
+calidad al 100 %.
+
+<ProjectCleanData
+  moduleSlug="los-datos-son-todo"
+  columns={projectColumns}
+  rows={projectRows}
+/>
+
+Así se ve este mismo oficio en el mundo profesional — tres líneas de
+pandas que resumen tu última media hora:
+
+<CodePeek
+  title="limpieza.py — lo que acabas de hacer, en Python"
+  code={`
+import pandas as pd
+
+datos = pd.read_csv("aire_bogota.csv")
+datos = datos.drop_duplicates(subset="fecha")     # filas repetidas
+datos["pm25"] = datos["pm25"].replace(999, None)  # códigos de error
+datos["pm25"] = datos["pm25"].interpolate()       # huecos: promediar vecinos
+`}
+/>

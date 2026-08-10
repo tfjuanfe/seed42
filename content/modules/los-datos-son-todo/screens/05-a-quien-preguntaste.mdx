@@ -1,0 +1,14 @@
+import { SampleBias } from "@/components/interactives/sample-bias";
+
+Hay una forma de dañar los datos que no rompe ninguna celda: preguntar
+**solo a algunos**. Misma pregunta, dos encuestas — cambia entre ellas y
+mira qué pasa con Facebook:
+
+<SampleBias />
+
+Ninguna tabla tiene errores. Ninguna celda está rota. Y aun así, un modelo
+entrenado con la encuesta de tu salón se equivocaría con medio país.
+
+A esto se le llama **sesgo de muestreo**, y es el error más peligroso de
+todos: es invisible en los datos. Solo se ve preguntando *¿a quién le
+faltó preguntar?* — y esa pregunta la responde una persona, no un modelo.

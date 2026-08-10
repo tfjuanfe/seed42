@@ -1,0 +1,16 @@
+import { ScatterPlot } from "@/components/interactives/scatter-plot";
+import { arriendoPoints } from "../data";
+
+A veces la basura no se ve en la tabla — se ve al **graficar**. Estos son
+arriendos reales de apartamentos: área contra precio.
+
+<ScatterPlot
+  points={arriendoPoints}
+  xLabel="área (m²)"
+  yLabel="precio (millones)"
+  outlierId="outlier"
+  explain="Un apartamento de 47 m² a 9.8 millones: alguien escribió un cero de más al digitar 980.000. Un modelo entrenado con ese punto creería que los apartamentos pequeños pueden ser carísimos."
+/>
+
+Regla de oficio: **grafica antes de entrenar**. El ojo humano encuentra en
+dos segundos lo que una tabla esconde en mil filas.
