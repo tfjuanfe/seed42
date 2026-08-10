@@ -48,3 +48,8 @@ SKILL.md
 
 # claude local settings
 .claude/settings.local.json
+
+# local dev artifacts
+dev.log
+AGENTS.md
+CLAUDE.md
