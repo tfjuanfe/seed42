@@ -1,0 +1,16 @@
+import { SurpriseExam } from "@/components/interactives/surprise-exam";
+import { fullTrainSet, slangExam, commentCategories } from "../data";
+
+Tu modelo estudió con comentarios «de manual»: gramática limpia, insultos
+de telenovela. Pero los comentarios reales de tu generación no hablan así.
+
+<SurpriseExam
+  trainSet={fullTrainSet}
+  categories={commentCategories}
+  examItems={slangExam}
+  lesson="El modelo no conoce «chimba», «melo» ni «qué oso» — nadie se los mostró. No es bruto: es ciego a lo que sus ejemplos no cubrieron. Igual que tu modelo de lluvia era ciego a Quibdó."
+/>
+
+Esta es la regla más importante del módulo: **un modelo hereda los huecos
+de sus ejemplos**. Si el mundo real trae jerga y tus ejemplos no, el
+modelo falla justo donde la gente de verdad escribe.

@@ -1,0 +1,14 @@
+import { LabelingTrainer } from "@/components/interactives/labeling-trainer";
+import { hookItems, hookTest, commentCategories } from "../data";
+
+Hasta ahora usaste modelos que otros entrenaron. Hoy el profesor eres tú.
+Tu alumno: un moderador de comentarios recién nacido, que no sabe nada.
+
+Etiqueta estos diez comentarios y mira la curva: es tu alumno presentando
+un examen oculto después de **cada** ejemplo que le das.
+
+<LabelingTrainer
+  items={hookItems}
+  categories={commentCategories}
+  testItems={hookTest}
+/>

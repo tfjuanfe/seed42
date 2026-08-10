@@ -1,0 +1,31 @@
+import { CodePeek } from "@/components/code-peek";
+
+Una pregunta antes de romper nada: ¿por qué el modelo mejora con más
+ejemplos… hasta que deja de mejorar?
+
+Mira tu primera curva: los primeros cinco ejemplos la dispararon; los
+últimos apenas la movieron. Eso pasa en todos los modelos del mundo, desde
+tu moderador hasta ChatGPT:
+
+- Los primeros ejemplos enseñan **el patrón general** — vale oro
+- Los siguientes enseñan **matices** — vale plata
+- Los últimos repiten lo que ya sabía — vale poco
+
+Por eso las empresas de IA no presumen de tener *más* datos, sino datos
+más **variados**. Y así se ve tu alumno en Python — más pequeño de lo que
+imaginabas:
+
+<CodePeek
+  title="moderador.py — tu modelo, completo"
+  code={`
+conteos = {"chevere": {}, "grosero": {}}
+
+def entrenar(comentario, etiqueta):        # tu clic de hoy
+    for palabra in comentario.lower().split():
+        conteos[etiqueta][palabra] = conteos[etiqueta].get(palabra, 0) + 1
+
+def clasificar(comentario):                # el examen
+    # gana la categoría cuyas palabras aparecen más
+    return max(conteos, key=lambda e: puntaje(comentario, e))
+`}
+/>

@@ -1,0 +1,18 @@
+import { LabelingTrainer } from "@/components/interactives/labeling-trainer";
+import { fullTrainSet, hardItems, hardTest, commentCategories } from "../data";
+
+Tu modelo ya domina los casos obvios. Ahora el examen se pone serio: le
+agregamos frases con sarcasmo y medias tintas — y tú vas a etiquetar
+justo esas.
+
+<LabelingTrainer
+  items={hardItems}
+  categories={commentCategories}
+  testItems={hardTest}
+  preLabeled={fullTrainSet}
+/>
+
+¿Notaste que estos seis costaron más que los diez primeros? Los ejemplos
+**difíciles** son los que más enseñan — a los modelos y a la gente. Un
+«wow, qué valiente» puede ser un elogio o una puñalada, y la etiqueta la
+decides tú.

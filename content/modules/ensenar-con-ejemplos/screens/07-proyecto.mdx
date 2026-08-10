@@ -1,0 +1,14 @@
+import { ProjectTrainer } from "@/components/interactives/project-trainer";
+import { projectItems, projectTest, projectGroups, commentCategories } from "../data";
+
+Tu proyecto completo, de una sola sentada: etiqueta 20 comentarios,
+entrena tu modelo, recibe su reporte de notas — y diagnostica el hueco
+que le quedó.
+
+<ProjectTrainer
+  moduleSlug="ensenar-con-ejemplos"
+  items={projectItems}
+  categories={commentCategories}
+  testItems={projectTest}
+  groups={projectGroups}
+/>
