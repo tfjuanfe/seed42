@@ -1,0 +1,25 @@
+import { DraggableLine } from "@/components/interactives/draggable-line";
+import { arriendos } from "../data";
+
+¿Y para qué tanto esfuerzo? Porque una línea bien puesta es una **máquina
+de predecir**. Ajústala y luego pregúntale por apartamentos que no están
+en los datos:
+
+<DraggableLine
+  points={arriendos}
+  xLabel="área (m²)"
+  yLabel="arriendo ($M)"
+  yPrefix="$"
+  ySuffix="M"
+  predict={{
+    min: 30,
+    max: 95,
+    label: "¿Cuánto costaría un apartamento de…",
+    xSuffix: " m²",
+  }}
+/>
+
+Un apartamento de 55 m² no existe en tus doce datos — y tu línea igual le
+pone precio. Eso es **generalizar**: usar el patrón para responder lo que
+nunca viste. Te suena, ¿cierto? El modelo de lluvia hacía lo mismo con
+las fechas.

@@ -1,0 +1,18 @@
+import { DraggableLine } from "@/components/interactives/draggable-line";
+import { arriendos } from "../data";
+
+Para que una máquina mejore algo, primero hay que **medirlo**. Las líneas
+rosadas son tu error: cuánto se equivoca tu línea en cada apartamento.
+
+<DraggableLine
+  points={arriendos}
+  xLabel="área (m²)"
+  yLabel="arriendo ($M)"
+  yPrefix="$"
+  ySuffix="M"
+  showSegments
+/>
+
+Mueve la línea y mira las rosadas encogerse y estirarse. El número de
+arriba — el **error promedio** — es la suma de todas, repartida. Una línea
+es «buena» cuando ese número es pequeño. Así de concreto.

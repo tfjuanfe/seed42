@@ -1,0 +1,28 @@
+import { DraggableLine } from "@/components/interactives/draggable-line";
+import { arriendos } from "../data";
+
+Hora de romper tu máquina de predecir. El deslizador ahora llega hasta
+donde no debería:
+
+<DraggableLine
+  points={arriendos}
+  xLabel="área (m²)"
+  yLabel="arriendo ($M)"
+  yPrefix="$"
+  ySuffix="M"
+  predict={{
+    min: 10,
+    max: 400,
+    label: "Pídele un precio fuera de rango",
+    xSuffix: " m²",
+  }}
+/>
+
+Pregúntale por 400 m² — una casa campestre — y te da un precio de
+apartamento grande. Pregúntale por 10 m² y puede dar casi cero o hasta
+negativo.
+
+La línea aprendió de apartamentos de 32 a 85 m². Fuera de ese rango no
+está prediciendo: está **alucinando con confianza**. Igual que tu modelo
+de lluvia en Quibdó, igual que el moderador con la jerga: los modelos no
+saben dónde terminan sus datos — eso lo tienes que saber tú.

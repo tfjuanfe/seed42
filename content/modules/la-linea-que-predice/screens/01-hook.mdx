@@ -1,0 +1,17 @@
+import { DraggableLine } from "@/components/interactives/draggable-line";
+import { arriendos } from "../data";
+
+Doce apartamentos reales de Bogotá: su área y su arriendo. Tu misión, sin
+más instrucciones: **acomoda la línea donde te parezca justa**.
+
+<DraggableLine
+  points={arriendos}
+  xLabel="área (m²)"
+  yLabel="arriendo ($M)"
+  yPrefix="$"
+  ySuffix="M"
+/>
+
+¿Ya quedó donde te gusta? Pregunta incómoda: ¿cómo sabes que tu línea es
+*buena*? «Se ve bien» no le sirve a un computador. Eso lo arreglamos en la
+siguiente pantalla.

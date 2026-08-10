@@ -1,0 +1,20 @@
+import { DraggableLine } from "@/components/interactives/draggable-line";
+import { arriendos } from "../data";
+
+Ahora sí, a competir: baja tu error promedio todo lo que puedas. Tu récord
+personal queda marcado arriba.
+
+<DraggableLine
+  points={arriendos}
+  xLabel="área (m²)"
+  yLabel="arriendo ($M)"
+  yPrefix="$"
+  ySuffix="M"
+  showSegments
+  showBest
+/>
+
+Lo que estás haciendo con los pulgares — mover, medir, corregir, repetir —
+es **exactamente** lo que hace un computador cuando "entrena": miles de
+ajustes pequeños, cada uno bajando el error un poquito. Tú eres el
+algoritmo en cámara lenta.
