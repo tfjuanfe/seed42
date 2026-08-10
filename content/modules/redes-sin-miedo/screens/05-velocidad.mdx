@@ -1,0 +1,16 @@
+import { NetworkLab } from "@/components/interactives/network-lab";
+
+Un control con el que pelean todos los ingenieros del mundo: la
+**velocidad de aprendizaje** — qué tan grande es cada paso de ajuste.
+Experimenta en los extremos:
+
+<NetworkLab dataset="ring" initialHidden={[4]} lrSlider showLoss />
+
+- Ponla al mínimo: la red aprende… para el año 2030
+- Ponla al máximo: el loss brinca como loco — pasos tan grandes que se
+  salta el valle donde quería aterrizar
+
+Es idéntico a bajar una montaña con niebla: pasos muy cortos y no llegas;
+saltos muy largos y te pasas del refugio. Los ingenieros de OpenAI ajustan
+esta misma perilla — con la diferencia de que su error cuesta millones de
+dólares en cómputo.

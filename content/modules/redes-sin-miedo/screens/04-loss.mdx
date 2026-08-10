@@ -1,0 +1,14 @@
+import { NetworkLab } from "@/components/interactives/network-lab";
+
+¿Y qué significa «entrenar», por dentro? Ahora vas a ver el signo vital
+de la red: la curva naranja del **loss** — su error, latiendo en vivo.
+
+<NetworkLab dataset="ring" initialHidden={[4]} showLoss />
+
+Míralo caer: cada paso, la red mide cuánto se equivocó y ajusta sus pesos
+una pizca en la dirección que más baja el error. Miles de veces por
+segundo.
+
+El nombre elegante es **descenso por gradiente**, pero tú ya lo hiciste a
+mano: es tu ciclo del módulo 05 — mover, medir, corregir — con la
+diferencia de que aquí las «manos» son el cálculo.

@@ -1,0 +1,16 @@
+import { NetworkLab } from "@/components/interactives/network-lab";
+
+Hora de romper la red — y esta rotura es la más cara de la industria. Le
+dimos una red grande y **solo 14 puntos** para estudiar. Entrénala un
+buen rato hasta que llegue a 100 %… y cuando esté orgullosa, pulsa
+«Mostrar datos nuevos».
+
+<NetworkLab dataset="ring" initialHidden={[8, 8]} overfit showLoss />
+
+¿Ves los circulitos huecos mal clasificados? La red no **aprendió** el
+anillo: se **memorizó** sus 14 puntos, como quien se aprende las
+respuestas del examen sin entender el tema.
+
+Se llama **sobreajuste** (overfitting) y ya lo conoces de otra forma: es
+el examen sorpresa del módulo 04. Un modelo que brilla con sus propios
+datos y fracasa con los nuevos no aprendió — memorizó.

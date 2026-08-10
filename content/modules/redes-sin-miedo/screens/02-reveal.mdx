@@ -1,0 +1,24 @@
+import { CodePeek } from "@/components/code-peek";
+
+Desmitifiquemos de una vez. Una **neurona artificial** es esto:
+
+<CodePeek
+  title="neurona.py — la celebridad, sin maquillaje"
+  code={`
+def neurona(x1, x2):
+    z = w1 * x1 + w2 * x2 + b   # suma pesada: ¿te suena?
+    return squash(z)            # aplastar a un rango, ej. 0 a 1
+`}
+/>
+
+Una suma pesada más un aplastón. **Ya la conocías**: tu cazador de estafas
+del módulo 02 era exactamente esto — palabras por pesos, sumar, umbral.
+
+Lo nuevo no es la neurona. Lo nuevo es lo que pasa cuando **apilas
+muchas**: la salida de unas se vuelve la entrada de otras, y las capas
+intermedias aprenden a inventar conceptos que nadie les pidió — «esto
+está adentro», «esto gira», «esto es un borde».
+
+Eso lo vas a ver con tus propios ojos en la siguiente pantalla, porque tu
+neurona solitaria está a punto de encontrarse con un problema que no
+puede resolver.
