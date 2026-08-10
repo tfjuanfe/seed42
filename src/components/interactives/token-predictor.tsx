@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Slider } from "./slider";
 
 interface Choice {
   text: string;
@@ -64,12 +65,29 @@ const TREE: Choice[] = [
   },
 ];
 
-export function TokenPredictor() {
+interface Props {
+  // Module 09: expose the sampling temperature and an auto-generate
+  // button — the "chaos knob" every real LLM has.
+  temperature?: boolean;
+}
+
+// Reweight probabilities by temperature: T→0 favors the top choice,
+// T high flattens toward uniform randomness.
+function reweight(options: Choice[], t: number): number[] {
+  const powed = options.map((o) => Math.pow(o.p, 1 / Math.max(t, 0.05)));
+  const sum = powed.reduce((a, b) => a + b, 0);
+  return powed.map((p) => p / sum);
+}
+
+export function TokenPredictor({ temperature = false }: Props) {
   const [sentence, setSentence] = useState<string[]>([START]);
   const [options, setOptions] = useState<Choice[] | undefined>(TREE);
+  const [temp, setTemp] = useState(10); // /10 → 1.0
   const reduceMotion = useReducedMotion();
 
   const done = !options;
+  const t = temp / 10;
+  const probs = options ? (temperature ? reweight(options, t) : options.map((o) => o.p)) : [];
 
   function pick(choice: Choice) {
     setSentence([...sentence, choice.text]);
@@ -81,11 +99,54 @@ export function TokenPredictor() {
     setOptions(TREE);
   }
 
+  // Sample a full sentence at the current temperature, instantly.
+  function autoGenerate() {
+    const words: string[] = [START];
+    let opts: Choice[] | undefined = TREE;
+    while (opts) {
+      const p = reweight(opts, t);
+      let r = Math.random();
+      let idx = 0;
+      for (let i = 0; i < p.length; i++) {
+        r -= p[i];
+        if (r <= 0) {
+          idx = i;
+          break;
+        }
+      }
+      const chosen: Choice = opts[idx];
+      words.push(chosen.text);
+      opts = chosen.next;
+    }
+    setSentence(words);
+    setOptions(undefined);
+  }
+
   return (
     <div className="rounded-[var(--radius-card)] bg-panel border-hairline border p-5 flex flex-col gap-4">
       <p className="text-label text-muted">
         Tú eres el modelo: elige la siguiente palabra
       </p>
+
+      {temperature && (
+        <div className="flex flex-col gap-2">
+          <Slider
+            label="Temperatura — el control del caos"
+            min={1}
+            max={20}
+            value={temp}
+            onChange={setTemp}
+            display={t.toFixed(1)}
+          />
+          <button
+            type="button"
+            onClick={autoGenerate}
+            className="self-start h-11 px-5 rounded-[var(--radius-control)] border-hairline border border-[var(--accent)] text-accent hover:bg-sub transition-colors font-medium"
+          >
+            Generar frase automática
+          </button>
+        </div>
+      )}
 
       {/* The sentence under construction */}
       <p className="text-h2 min-h-[2.6em]" aria-live="polite">
@@ -137,7 +198,7 @@ export function TokenPredictor() {
             transition={{ duration: 0.15 }}
             className="flex flex-col gap-2"
           >
-            {options.map((o) => (
+            {options.map((o, i) => (
               <button
                 key={o.text}
                 type="button"
@@ -147,15 +208,15 @@ export function TokenPredictor() {
                 {/* Probability bar behind the word */}
                 <motion.span
                   className="absolute inset-y-0 left-0 bg-accent opacity-20"
-                  initial={reduceMotion ? { width: `${o.p * 100}%` } : { width: 0 }}
-                  animate={{ width: `${o.p * 100}%` }}
+                  initial={reduceMotion ? { width: `${probs[i] * 100}%` } : { width: 0 }}
+                  animate={{ width: `${probs[i] * 100}%` }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   aria-hidden="true"
                 />
                 <span className="relative flex items-baseline justify-between gap-3">
                   <span className="font-medium">{o.text}</span>
                   <span className="text-label text-muted font-mono">
-                    {Math.round(o.p * 100)} %
+                    {Math.round(probs[i] * 100)} %
                   </span>
                 </span>
               </button>

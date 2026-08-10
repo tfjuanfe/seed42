@@ -1,0 +1,19 @@
+import { HallucinationHunt } from "@/components/interactives/hallucination-hunt";
+import { Figure } from "@/components/figure";
+import fotoBiblioteca from "@/../public/images/biblioteca.jpg";
+
+Llegó la hora de romper la IA que habla. Su falla más famosa tiene
+nombre técnico — **alucinación** — y la vas a ver de frente:
+
+<HallucinationHunt />
+
+<Figure
+  src={fotoBiblioteca}
+  alt="Sala de lectura de una biblioteca con estanterías de libros"
+  caption="El antídoto no cambió: verificar en la fuente sigue ganando"
+  credit="Asturio Cantabrio · CC BY-SA"
+/>
+
+Fíjate en el patrón: el modelo no falla en lo obvio — falla en los
+**detalles específicos y verificables**: fechas, lugares, citas, cifras.
+Justo lo que más se copia en las tareas sin revisar.
