@@ -56,6 +56,15 @@ export const submissions = pgTable(
   (table) => [index("submissions_user_idx").on(table.userId)],
 );
 
+// Pre-launch waitlist. Email only; no account required.
+export const waitlist = pgTable("waitlist", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
 // Analytics from day one: module_started, screen_advanced,
 // module_completed, project_submitted. user_id is nullable because
 // module 01 is playable without an account.
