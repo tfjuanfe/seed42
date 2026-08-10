@@ -1,0 +1,41 @@
+import { LabelingTask } from "@/components/interactives/labeling-task";
+
+A esas variables delatoras se les llama **proxies**: no mencionan al
+grupo, pero lo señalan. Entrena el ojo — ¿cuáles de estas variables
+podrían filtrar el estrato de un aspirante en Colombia?
+
+<LabelingTask
+  items={[
+    {
+      id: "direccion",
+      text: "La dirección de la casa",
+      answer: "si",
+      explain: "El barrio es casi un número de estrato con nombre propio",
+    },
+    {
+      id: "sangre",
+      text: "El tipo de sangre",
+      answer: "no",
+      explain: "No correlaciona con nada socioeconómico: proxy inútil",
+    },
+    {
+      id: "celular",
+      text: "El modelo de celular desde el que aplica",
+      answer: "si",
+      explain: "Un iPhone 17 y un gama baja cuentan historias distintas — las apps de crédito lo usan de verdad",
+    },
+    {
+      id: "ortografia",
+      text: "La ortografía del formulario",
+      answer: "si",
+      explain: "Delata calidad educativa previa — castiga dos veces al que tuvo peor colegio",
+    },
+  ]}
+  categories={[
+    { id: "si", label: "Filtra el estrato" },
+    { id: "no", label: "No filtra nada" },
+  ]}
+/>
+
+Por esto «borrar la variable sensible» casi nunca basta: los datos están
+llenos de espejos donde el grupo se refleja.
